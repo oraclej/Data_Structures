@@ -1,8 +1,8 @@
 package edu.iaun.ds.stack;
 
-public interface Stack {
-    void push(int value);
-    int pop();
+public interface Stack<E> {
+    void push(E value);
+    E pop();
     boolean isEmpty();
-    int peek();
+    E peek();
 }

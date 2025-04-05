@@ -1,34 +1,28 @@
 package edu.iaun.ds.stack;
 
-import edu.iaun.ds.linkedList.Node;
+public class StackLinkedList<E> implements Stack<E> {
+    private Node<E> top = null;
 
-public class StackLinkedList implements Stack {
-    private Node top = null;
-
-    @Override
-    public void push(int value) {
+    public void push(E value) {
         Node newNode = new Node(value);
         newNode.setNext(top);
         top = newNode;
     }
 
-    @Override
-    public int pop() {
+    public E pop() {
         if(!isEmpty()) {
-            int value = top.getData();
+            E value = top.getData();
             top = top.getNext();
             return value;
         }
         throw new StackException("Stack is empty");
     }
 
-    @Override
     public boolean isEmpty() {
         return top == null;
     }
 
-    @Override
-    public int peek() {
+    public E peek() {
         if(!isEmpty())
             return top.getData();
         throw new StackException("Stack is empty");

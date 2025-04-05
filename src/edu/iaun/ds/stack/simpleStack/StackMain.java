@@ -1,8 +1,10 @@
-package edu.iaun.ds.stack;
+package edu.iaun.ds.stack.simpleStack;
+
+import edu.iaun.ds.stack.StackException;
 
 public class StackMain {
     public static void main(String[] args) {
-        Stack stack = new StackArray();
+        Stack stack = new Stack();
         try {
             stack.push(1);
             stack.push(2);
