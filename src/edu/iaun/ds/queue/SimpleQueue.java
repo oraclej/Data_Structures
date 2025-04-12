@@ -1,7 +1,7 @@
 package edu.iaun.ds.queue;
 
 public class SimpleQueue {
-    private final int MAX_SIZE = 10;
+    private final int MAX_SIZE = 6;
     private int f = -1;
     private int r = -1;
     private int[] q = new int[MAX_SIZE];

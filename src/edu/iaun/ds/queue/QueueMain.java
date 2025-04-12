@@ -1,25 +1,20 @@
 package edu.iaun.ds.queue;
 
+import java.util.Scanner;
+
 public class QueueMain {
     public static void main(String[] args) {
-        SimpleQueue queue = new SimpleQueue();
-        queue.enqueue(10);
-        queue.enqueue(20);
-        queue.enqueue(30);
-        queue.enqueue(40);
-        queue.enqueue(50);
-        System.out.println(queue.dequeue());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.dequeue());
-        queue.enqueue(60);
-        queue.enqueue(70);
-        queue.enqueue(80);
-        queue.enqueue(90);
-        queue.enqueue(100);
-        System.out.println(queue.dequeue());
-        queue.enqueue(110);
-        System.out.println(queue.peek());
-        System.out.println(queue.dequeue());
-        System.out.println(queue.peek());
+//        SimpleQueue queue = new SimpleQueue();
+        Queue<Integer> queue = new LinkedQueue<Integer>();
+        String s = "";
+        Scanner sc = new Scanner(System.in);
+        do {
+            System.out.print("Enter a number: ");
+            s = sc.nextLine();
+            if(s.startsWith("+"))
+                queue.enqueue(Integer.parseInt(s.substring(1)));
+            else if(s.startsWith("-"))
+                System.out.println(queue.dequeue());
+        }while (!s.equals(""));
     }
 }

@@ -1,6 +1,6 @@
 package edu.iaun.ds.stack.simpleStack;
 
-import edu.iaun.ds.linkedList.Node;
+import edu.iaun.ds.linkedList.simple.Node;
 
 public class DStack {
     private Node top = null;
