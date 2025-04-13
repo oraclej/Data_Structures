@@ -12,10 +12,11 @@ public interface LinkedList<T> {
     boolean isEmpty();
     int size();
     T get(int index);
-    T set(int index, T element);
+    void set(int index, T element);
     boolean contains(T element);
     int indexOf(T element);
     int lastIndexOf(T element);
     int indexOf(T element, int fromIndex);
     T[] toArray();
+    void print();
 }
