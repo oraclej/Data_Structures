@@ -7,6 +7,7 @@ public class Main {
         list.add(2, 25);
         list.removeFirst();
         list.removeLast();
+        list.remove(1);
         list.print();
     }
 }

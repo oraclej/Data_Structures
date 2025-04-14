@@ -1,18 +1,21 @@
-package edu.iaun.ds.linkedList;
+package edu.iaun.ds.doublyLinkedList;
 
-public class MyLinkedList<T> implements LinkedList<T> {
-    private Node<T> head;
+import edu.iaun.ds.linkedList.LinkedListException;
+
+public class MyDoublyLinkedList<T> implements DoublyLinkedList<T> {
+    private DNode<T> head;
     private int size = 0;
 
-    public MyLinkedList(T... elements) {
+    public MyDoublyLinkedList(T... elements) {
         head = null;
         if (elements.length > 0) {
-            head = new Node<>(elements[0]);
+            head = new DNode<>(elements[0]);
             size++;
-            Node<T> last = head;
+            DNode<T> last = head;
             for (int i = 1; i < elements.length; i++) {
-                Node<T> t = new Node<>(elements[i]);
+                DNode<T> t = new DNode<>(elements[i]);
                 last.setNext(t);
+                t.setPrev(last);
                 size++;
                 last = t;
             }
@@ -21,41 +24,39 @@ public class MyLinkedList<T> implements LinkedList<T> {
 
     @Override
     public void add(T element) {
-        Node<T> p = new Node<>(element);
+        DNode<T> p = new DNode<>(element);
         if (isEmpty())
             head = p;
         else {
-            Node<T> t = head;
+            DNode<T> t = head;
             while (t.getNext() != null)
                 t = t.getNext();
             t.setNext(p);
+            p.setPrev(t);
         }
         size++;
     }
 
+    //TODO : change from here
     @Override
     public void add(int index, T element) {
         if (index > size || index < 0)
             throw new LinkedListException("Index out of bounds:" + index);
-        Node<T> p = new Node<>(element);
+        DNode<T> p = new DNode<>(element);
         size++;
-        if (size == 0)
-            head = p;
-        else {
-            Node<T> t = head;
-            for (int i = 0; i < index - 1; i++)
-                t = t.getNext();
-            p.setNext(t.getNext());
-            t.setNext(p);
-        }
+        DNode<T> t = head;
+        for (int i = 0; i < index - 1; i++)
+            t = t.getNext();
+        p.setNext(t.getNext());
+        t.setNext(p);
     }
 
     @Override
     public void remove(int index) {
         if (index >= size || index < 0)
             throw new LinkedListException("Index out of bounds");
-        Node<T> t = head;
-        if(size == 1) {
+        DNode<T> t = head;
+        if (size == 1) {
             head = null;
             size = 0;
         }
@@ -87,7 +88,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
             head = null;
             size--;
         } else {
-            Node<T> t = head;
+            DNode<T> t = head;
             while (t.getNext().getNext() != null)
                 t = t.getNext();
             t.setNext(null);
@@ -104,7 +105,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
 
     @Override
     public T getLast() {
-        Node<T> t = head;
+        DNode<T> t = head;
         while (t.getNext() != null)
             t = t.getNext();
         return t.getData();
@@ -124,7 +125,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
     public T get(int index) {
         if (index >= size || index < 0)
             throw new LinkedListException("Index out of bounds");
-        Node<T> t = head;
+        DNode<T> t = head;
         for (int i = 0; i < index; i++)
             t = t.getNext();
         return t.getData();
@@ -134,7 +135,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
     public void set(int index, T element) {
         if (index >= size || index < 0)
             throw new LinkedListException("Index out of bounds");
-        Node<T> t = head;
+        DNode<T> t = head;
         for (int i = 0; i < index; i++)
             t = t.getNext();
         t.setData(element);
@@ -144,7 +145,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
     public boolean contains(T element) {
         if (head == null)
             return false;
-        Node<T> t = head;
+        DNode<T> t = head;
         while (t.getNext() != null) {
             if (t.getData().equals(element))
                 return true;
@@ -157,7 +158,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
     public int indexOf(T element) {
         if (head == null)
             return -1;
-        Node<T> t = head;
+        DNode<T> t = head;
         for (int i = 0; i < size; i++) {
             if (t.getData().equals(element))
                 return i;
@@ -170,7 +171,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
     public int lastIndexOf(T element) {
         if (head == null)
             return -1;
-        Node<T> t = head;
+        DNode<T> t = head;
         int index = -1;
         for (int i = 0; i < size; i++) {
             if (t.getData().equals(element))
@@ -188,7 +189,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
             return -1;
         if (fromIndex < 0)
             return indexOf(element);
-        Node<T> t = head;
+        DNode<T> t = head;
         int i = 0;
         for (; i < fromIndex; i++)
             t = t.getNext();
@@ -206,7 +207,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
         if (head == null)
             return null;
         T[] arr = (T[]) new Object[size];
-        Node<T> t = head;
+        DNode<T> t = head;
         for (int i = 0; i < size; i++) {
             arr[i] = t.getData();
             t = t.getNext();
@@ -216,7 +217,7 @@ public class MyLinkedList<T> implements LinkedList<T> {
 
     @Override
     public void print() {
-        Node<T> t = head;
+        DNode<T> t = head;
         while (t != null) {
             System.out.print(t.getData() + "\t");
             t = t.getNext();
