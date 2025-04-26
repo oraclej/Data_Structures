@@ -1,4 +1,4 @@
-package edu.iaun.ds.linkedList;
+package edu.iaun.ds;
 
 public class Node<T> {
     private T data;

@@ -1,5 +1,7 @@
 package edu.iaun.ds.queue;
 
+import edu.iaun.ds.Node;
+
 public class LinkedQueue<T> implements Queue<T> {
     private Node<T> head;
     private Node<T> tail;

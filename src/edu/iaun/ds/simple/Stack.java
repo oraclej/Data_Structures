@@ -1,13 +1,16 @@
-package edu.iaun.ds.stack.simpleStack;
+package edu.iaun.ds.simple;
 
 
 public class Stack {
-    private final int MAX_SIZE = 100;
-    private int[] arr = new int[MAX_SIZE];
+    private int[] arr;
     private int top = -1;
 
+    public Stack(int size) {
+        arr = new int[size];
+    }
+
     public void push(int x)  {
-        if(top == MAX_SIZE-1)
+        if(top == arr.length - 1)
             System.err.println("Stack is full");
         else
             arr[++top] = x;

@@ -1,12 +1,15 @@
 package edu.iaun.ds.stack;
 
 public class StackArray<E> implements Stack<E> {
-    private final int MAX_SIZE = 100;
-    private E[] arr = (E[])new Object[MAX_SIZE];
+    private E[] arr;
     private int top = -1;
 
+    public StackArray(int size) {
+        arr = (E[])new Object[size];
+    }
+
     public void push(E x)  {
-        if(top == MAX_SIZE-1)
+        if(top == arr.length - 1)
             throw new StackException("Stack is full");
         arr[++top] = x;
     }

@@ -37,7 +37,6 @@ public class MyDoublyLinkedList<T> implements DoublyLinkedList<T> {
         size++;
     }
 
-    //TODO : change from here
     @Override
     public void add(int index, T element) {
         if (index > size || index < 0)
@@ -45,12 +44,15 @@ public class MyDoublyLinkedList<T> implements DoublyLinkedList<T> {
         DNode<T> p = new DNode<>(element);
         size++;
         DNode<T> t = head;
-        for (int i = 0; i < index - 1; i++)
+        for (int i = 0; i < index; i++)
             t = t.getNext();
         p.setNext(t.getNext());
+        p.setPrev(t);
+        p.getNext().setPrev(p);
         t.setNext(p);
     }
 
+    //TODO : change from here
     @Override
     public void remove(int index) {
         if (index >= size || index < 0)

@@ -1,4 +1,4 @@
-package edu.iaun.ds.linkedList.simple;
+package edu.iaun.ds.simple;
 
 public class LinkedList {
     private Node head;

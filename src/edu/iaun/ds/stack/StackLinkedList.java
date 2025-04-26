@@ -1,5 +1,7 @@
 package edu.iaun.ds.stack;
 
+import edu.iaun.ds.Node;
+
 public class StackLinkedList<E> implements Stack<E> {
     private Node<E> top = null;
     private int size = 0;

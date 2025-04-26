@@ -1,4 +1,4 @@
-package edu.iaun.ds.queue;
+package edu.iaun.ds.simple;
 
 public class SimpleQueue {
     private final int MAX_SIZE = 6;

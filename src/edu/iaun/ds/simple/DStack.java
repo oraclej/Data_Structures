@@ -1,6 +1,4 @@
-package edu.iaun.ds.stack.simpleStack;
-
-import edu.iaun.ds.linkedList.simple.Node;
+package edu.iaun.ds.simple;
 
 public class DStack {
     private Node top = null;
@@ -12,7 +10,7 @@ public class DStack {
     }
 
     public int pop() {
-        if(!isEmpty()) {
+        if(top != null) {
             int value = top.getData();
             top = top.getNext();
             return value;
@@ -21,12 +19,8 @@ public class DStack {
         return -1;
     }
 
-    public boolean isEmpty() {
-        return top == null;
-    }
-
     public int peek() {
-        if(!isEmpty())
+        if(top != null)
             return top.getData();
         System.err.println("Stack is empty");
         return -1;

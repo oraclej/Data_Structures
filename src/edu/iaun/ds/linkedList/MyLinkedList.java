@@ -1,5 +1,7 @@
 package edu.iaun.ds.linkedList;
 
+import edu.iaun.ds.Node;
+
 public class MyLinkedList<T> implements LinkedList<T> {
     private Node<T> head;
     private int size = 0;

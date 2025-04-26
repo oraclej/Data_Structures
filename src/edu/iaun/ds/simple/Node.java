@@ -1,18 +1,18 @@
-package edu.iaun.ds.stack;
+package edu.iaun.ds.simple;
 
-public class Node<E> {
-    private E data;
+public class Node {
+    private int data;
     private Node next;
 
-    public Node(E data) {
+    public Node(int data) {
         this.data = data;
     }
 
-    public E getData() {
+    public int getData() {
         return data;
     }
 
-    public void setData(E data) {
+    public void setData(int data) {
         this.data = data;
     }
 

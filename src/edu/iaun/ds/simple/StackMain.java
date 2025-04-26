@@ -1,4 +1,4 @@
-package edu.iaun.ds.stack.simpleStack;
+package edu.iaun.ds.simple;
 
 import edu.iaun.ds.stack.StackException;
 
