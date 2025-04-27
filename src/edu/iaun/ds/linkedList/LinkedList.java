@@ -19,4 +19,5 @@ public interface LinkedList<T> {
     int indexOf(T element, int fromIndex);
     T[] toArray();
     void print();
+    void printInReverse();
 }

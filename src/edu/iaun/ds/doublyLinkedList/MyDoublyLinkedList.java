@@ -43,13 +43,19 @@ public class MyDoublyLinkedList<T> implements DoublyLinkedList<T> {
             throw new LinkedListException("Index out of bounds:" + index);
         DNode<T> p = new DNode<>(element);
         size++;
-        DNode<T> t = head;
-        for (int i = 0; i < index; i++)
-            t = t.getNext();
-        p.setNext(t.getNext());
-        p.setPrev(t);
-        p.getNext().setPrev(p);
-        t.setNext(p);
+        if(index == 0) {
+            p.setNext(head);
+            head.setPrev(p);
+            head = p;
+        }else {
+            DNode<T> t = head;
+            for (int i = 0; i < index; i++)
+                t = t.getNext();
+            p.setNext(t.getNext());
+            p.setPrev(t);
+            p.getNext().setPrev(p);
+            t.setNext(p);
+        }
     }
 
     //TODO : change from here
@@ -61,15 +67,25 @@ public class MyDoublyLinkedList<T> implements DoublyLinkedList<T> {
         if (size == 1) {
             head = null;
             size = 0;
+        }else if(index == 0) {
+            head = t.getNext();
+            head.setPrev(null);
+        }else{
+            for (int i = 0; i < index - 1; i++)
+                t = t.getNext();
+            t.setNext(t.getNext().getNext());
+            t.getNext().setPrev(t);
+            size--;
         }
-        for (int i = 0; i < index - 1; i++)
-            t = t.getNext();
-        t.setNext(t.getNext().getNext());
-        size--;
     }
 
     @Override
     public void clear() {
+        DNode<T> t = head;
+        while (t != null) {
+            t.setPrev(null);
+            t = t.getNext();
+        }
         head = null;
         size = 0;
     }
@@ -79,6 +95,7 @@ public class MyDoublyLinkedList<T> implements DoublyLinkedList<T> {
         if (head == null)
             throw new LinkedListException("List is empty");
         head = head.getNext();
+        head.setPrev(null);
         size--;
     }
 
@@ -91,7 +108,7 @@ public class MyDoublyLinkedList<T> implements DoublyLinkedList<T> {
             size--;
         } else {
             DNode<T> t = head;
-            while (t.getNext().getNext() != null)
+            for (int i = 1; i < size - 1; i++)
                 t = t.getNext();
             t.setNext(null);
             size--;
@@ -224,5 +241,20 @@ public class MyDoublyLinkedList<T> implements DoublyLinkedList<T> {
             System.out.print(t.getData() + "\t");
             t = t.getNext();
         }
+        System.out.println();
+    }
+
+    @Override
+    public void printInReverse() {
+        if(head == null)
+            return;
+        DNode<T> t = head;
+        while (t.getNext() != null)
+            t = t.getNext();
+        while (t != null) {
+            System.out.print(t.getData() + "\t");
+            t = t.getPrev();
+        }
+        System.out.println();
     }
 }

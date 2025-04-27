@@ -223,5 +223,20 @@ public class MyLinkedList<T> implements LinkedList<T> {
             System.out.print(t.getData() + "\t");
             t = t.getNext();
         }
+        System.out.println();
+    }
+
+    @Override
+    public void printInReverse() {
+        printInReverse(head);
+        System.out.println();
+    }
+
+    private void printInReverse(Node<T> t) {
+        while (t != null) {
+            t = t.getNext();
+            printInReverse(t);
+            System.out.print(t.getData() + "\t");
+        }
     }
 }

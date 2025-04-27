@@ -17,7 +17,7 @@ public class InfixToPostfix {
 
     public static String infixToPostfix(String infix) {
         StringBuilder postfix = new StringBuilder();
-        Stack<Character> stack = new StackArray<>();
+        Stack<Character> stack = new StackArray<>(10);
 
         for (int i = 0; i < infix.length(); i++) {
             char c = infix.charAt(i);
